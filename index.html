@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Eid ul Adha Namma</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255,214,107,.9), transparent 22%),
+        radial-gradient(circle at 85% 25%, rgba(0,229,160,.55), transparent 25%),
+        linear-gradient(135deg, #062b22 0%, #0e4b3c 38%, #154734 62%, #271304 100%);
+      color: #fff;
+    }
+    .font-arabic { font-family: 'Amiri', serif; }
+
+    .pattern {
+      position: fixed;
+      inset: 0;
+      opacity: .13;
+      background-image:
+        linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+        linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+        linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+        linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff);
+      background-size: 70px 120px;
+      background-position: 0 0, 0 0, 35px 60px, 35px 60px;
+      animation: patternMove 14s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes patternMove { to { background-position: 70px 120px, 70px 120px, 105px 180px, 105px 180px; } }
+
+    .step { display: none; animation: show .85s cubic-bezier(.16,1,.3,1) forwards; }
+    .step.active { display: block; }
+    @keyframes show { from { opacity: 0; transform: translateY(45px) scale(.92) rotateX(8deg); } to { opacity: 1; transform: translateY(0) scale(1) rotateX(0); } }
+
+    .glass {
+      background: linear-gradient(145deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+      backdrop-filter: blur(22px);
+      border: 1px solid rgba(255,255,255,.28);
+      box-shadow: 0 35px 90px rgba(0,0,0,.38), inset 0 0 35px rgba(255,255,255,.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .glass:before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: conic-gradient(from 180deg, #ffd166, #06d6a0, #fff, #f77f00, #ffd166);
+      opacity: .25;
+      filter: blur(18px);
+      animation: rotateGlow 7s linear infinite;
+      z-index: -1;
+    }
+    @keyframes rotateGlow { to { transform: rotate(360deg); } }
+
+    .eid-title {
+      background: linear-gradient(90deg, #fff7c2, #ffd166, #fff, #7fffd4, #fff7c2);
+      background-size: 300% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: shine 4s linear infinite;
+      text-shadow: 0 18px 35px rgba(0,0,0,.25);
+    }
+    @keyframes shine { to { background-position: 300% center; } }
+
+    .moon {
+      position: fixed;
+      right: 8%; top: 7%;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: #fff2a8;
+      box-shadow: 0 0 65px #fff2a8, 0 0 120px rgba(255,210,90,.45);
+      z-index: 0;
+      animation: moonFloat 5s ease-in-out infinite;
+    }
+    .moon:after {
+      content: '';
+      position: absolute;
+      width: 112px; height: 112px;
+      border-radius: 50%;
+      background: #0e4b3c;
+      left: 45px; top: -6px;
+    }
+    @keyframes moonFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+
+    .star, .spark {
+      position: fixed;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 16px #fff;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .star { width: 6px; height: 6px; animation: twinkle 2s infinite ease-in-out; }
+    .spark { width: 8px; height: 8px; animation: sparkFly 5s linear infinite; }
+    @keyframes twinkle { 0%,100% { opacity: .2; transform: scale(.6); } 50% { opacity: 1; transform: scale(1.4); } }
+    @keyframes sparkFly { from { transform: translateY(105vh) scale(.3); opacity: 0; } 20% { opacity: 1; } to { transform: translateY(-20vh) scale(1.2); opacity: 0; } }
+
+    .animal {
+      font-size: 64px;
+      position: fixed;
+      bottom: 18px;
+      animation: walk 18s linear infinite;
+      z-index: 2;
+      filter: drop-shadow(0 16px 20px rgba(0,0,0,.3));
+    }
+    @keyframes walk {
+      0% { transform: translateX(-170px) scaleX(1) rotate(-2deg); }
+      49% { transform: translateX(calc(100vw + 90px)) scaleX(1) rotate(2deg); }
+      50% { transform: translateX(calc(100vw + 90px)) scaleX(-1) rotate(2deg); }
+      100% { transform: translateX(-170px) scaleX(-1) rotate(-2deg); }
+    }
+
+    .floating-animal {
+      position: fixed;
+      font-size: 70px;
+      z-index: 1;
+      opacity: .18;
+      pointer-events: none;
+      filter: blur(.2px) drop-shadow(0 12px 22px rgba(0,0,0,.3));
+    }
+
+    .goat-float {
+      animation: goatFloat 7s ease-in-out infinite;
+    }
+
+    .cow-float {
+      animation: cowFloat 9s ease-in-out infinite;
+    }
+
+    .camel-float {
+      animation: camelFloat 11s ease-in-out infinite;
+    }
+
+    .sheep-float {
+      animation: sheepFloat 8s ease-in-out infinite;
+    }
+
+    @keyframes goatFloat {
+      0%,100% { transform: translateY(0) rotate(-5deg) scale(1); }
+      50% { transform: translateY(-25px) rotate(6deg) scale(1.08); }
+    }
+
+    @keyframes cowFloat {
+      0%,100% { transform: translateX(0) rotate(0deg) scale(1); }
+      50% { transform: translateX(-18px) translateY(-18px) rotate(4deg) scale(1.05); }
+    }
+
+    @keyframes camelFloat {
+      0%,100% { transform: translateY(0) rotate(2deg) scale(1); }
+      50% { transform: translateY(-30px) rotate(-4deg) scale(1.1); }
+    }
+
+    @keyframes sheepFloat {
+      0%,100% { transform: translateX(0) translateY(0) scale(1); }
+      50% { transform: translateX(15px) translateY(-20px) scale(1.06); }
+    }
+
+    .lantern {
+      position: fixed;
+      width: 52px; height: 78px;
+      background: linear-gradient(#fff3a6, #ffb703 45%, #fb8500);
+      border-radius: 24px 24px 14px 14px;
+      box-shadow: 0 0 30px rgba(255,214,107,.85);
+      animation: swing 3s ease-in-out infinite;
+      transform-origin: top;
+      z-index: 1;
+    }
+    .lantern:before { content: ''; position: absolute; left: 24px; top: -52px; width: 2px; height: 52px; background: rgba(255,255,255,.65); }
+    .lantern:after { content: '✦'; position: absolute; left: 15px; top: 22px; color: white; font-size: 22px; }
+    @keyframes swing { 0%,100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+
+    .card {
+      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,246,210,.92));
+      color: #09372d;
+      border-radius: 32px;
+      border: 2px solid rgba(255,214,107,.85);
+      box-shadow: 0 22px 50px rgba(0,0,0,.22);
+    }
+    .animal-card { position: relative; overflow: hidden; }
+    .animal-card:before {
+      content: '';
+      position: absolute;
+      width: 70px; height: 160%;
+      background: rgba(255,255,255,.55);
+      top: -30%; left: -90px;
+      transform: rotate(25deg);
+      transition: .6s;
+    }
+    .animal-card:hover:before { left: 120%; }
+    .animal-card:hover { transform: translateY(-10px) scale(1.05); }
+
+    .dua-box { animation: softPulse 2.3s infinite; }
+    @keyframes softPulse { 0%,100% { box-shadow: 0 22px 50px rgba(0,0,0,.22); } 50% { box-shadow: 0 22px 65px rgba(255,209,102,.35); } }
+
+    .confetti {
+      position: fixed;
+      top: -20px;
+      width: 10px;
+      height: 16px;
+      animation: fall 3.2s linear forwards;
+      z-index: 50;
+    }
+    @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+
+    .progress-dot { width: 11px; height: 11px; border-radius: 999px; background: rgba(255,255,255,.35); transition: .3s; }
+    .progress-dot.active { width: 34px; background: #ffd166; }
+
+    .typewriter { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 3px solid #ffd166; animation: typing 3s steps(28), blink .7s infinite; }
+    @keyframes typing { from { width: 0; } to { width: 100%; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+  </style>
+</head>
+<body class="flex items-center justify-center px-4">
+  <div class="pattern"></div>
+  <div class="moon"></div>
+  <div class="lantern left-[7%] top-0"></div>
+  <div class="lantern right-[24%] top-0" style="animation-delay:1s"></div>
+  <div class="lantern left-[28%] top-0" style="animation-delay:1.8s"></div>
+  <div class="animal" style="animation-delay:0s">🐐</div>
+  <div class="animal" style="animation-delay:5s; bottom:78px">🐄</div>
+  <div class="animal" style="animation-delay:10s; bottom:138px">🐪</div>
+
+  <!-- Floating Background Animals -->
+  <div class="floating-animal goat-float" style="top:12%; left:8%">🐐</div>
+  <div class="floating-animal cow-float" style="top:18%; right:12%">🐄</div>
+  <div class="floating-animal camel-float" style="top:62%; left:10%">🐪</div>
+  <div class="floating-animal sheep-float" style="top:70%; right:14%">🐑</div>
+  <div class="floating-animal goat-float" style="top:40%; left:3%">🐐</div>
+  <div class="floating-animal cow-float" style="top:50%; right:3%">🐄</div>
+
+  <main class="relative z-10 w-full max-w-5xl">
+    <div class="glass rounded-[2.2rem] p-6 sm:p-10 text-center min-h-[610px] flex flex-col justify-center">
+      <div class="absolute top-6 left-1/2 -translate-x-1/2 flex gap-2" id="progress"></div>
+
+      <section class="step active w-full">
+        <p class="uppercase tracking-[.38em] text-sm text-yellow-100 mb-4">A Blessed Eid Surprise</p>
+        <h1 class="font-arabic eid-title text-6xl sm:text-8xl font-bold mb-4">Eid ul Adha Mubarak</h1>
+        <p class="text-lg sm:text-xl max-w-2xl mx-auto text-white/90 mb-8">A beautiful animated Eid card full of blessings, Qurbani spirit, love, and happiness.</p>
+        <button onclick="nextStep(); launchConfetti(70)" class="bg-yellow-300 text-emerald-950 px-9 py-4 rounded-full font-extrabold shadow-xl hover:scale-105 active:scale-95 transition">Open Eid Magic 🌙</button>
+      </section>
+
+      <section class="step w-full">
+        <h2 class="font-arabic eid-title text-5xl sm:text-7xl mb-5">Select Your Qurbani Animal</h2>
+        <p class="text-white/90 max-w-2xl mx-auto mb-8">Click any animal card to unlock a sweet Eid blessing.</p>
+        <div class="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+          <button onclick="selectAnimal('Goat 🐐')" class="card animal-card p-6 transition duration-300 text-6xl">🐐<div class="text-base font-extrabold mt-3">Goat</div></button>
+          <button onclick="selectAnimal('Cow 🐄')" class="card animal-card p-6 transition duration-300 text-6xl">🐄<div class="text-base font-extrabold mt-3">Cow</div></button>
+          <button onclick="selectAnimal('Camel 🐪')" class="card animal-card p-6 transition duration-300 text-6xl">🐪<div class="text-base font-extrabold mt-3">Camel</div></button>
+        </div>
+        <p id="animalText" class="mt-8 text-xl font-semibold hidden"></p>
+      </section>
+
+      <section class="step w-full">
+        <h2 class="font-arabic eid-title text-5xl sm:text-7xl mb-6">Feed The Happiness</h2>
+        <p class="text-white/90 mb-6">Tap the plate 5 times to fill it with Eid joy.</p>
+        <button onclick="feedPlate()" class="card w-60 h-60 mx-auto rounded-full flex items-center justify-center text-7xl hover:scale-105 transition relative">
+          <span id="plateEmoji">🍽️</span>
+          <span class="absolute bottom-8 text-base font-extrabold">Joy: <span id="joyScore">0</span>/5</span>
+        </button>
+      </section>
+
+      <section class="step w-full">
+        <h2 class="font-arabic eid-title text-5xl sm:text-7xl mb-6">Share With Others</h2>
+        <div class="card dua-box max-w-2xl mx-auto p-8">
+          <div class="text-7xl mb-4">🎁</div>
+          <p class="text-xl leading-9">The beauty of Eid is not only in celebration, but in sharing meat, food, smiles, and kindness with family, neighbours, and people in need.</p>
+        </div>
+        <button onclick="nextStep(); launchConfetti(100)" class="mt-8 bg-yellow-300 text-emerald-950 px-9 py-4 rounded-full font-extrabold shadow-xl hover:scale-105 transition">Send Blessings ✨</button>
+      </section>
+
+      <section class="step w-full">
+        <h2 class="font-arabic eid-title text-5xl sm:text-7xl mb-6">Special Message</h2>
+        <div class="card max-w-3xl mx-auto p-8 text-left">
+          <p class="text-2xl font-extrabold mb-4 text-center">Happy Eid Namma ❤️</p>
+          <p class="text-lg leading-9 text-center">
+            May Allah accept your Qurbani, fill your life with barakah, protect your family, increase your rizq, and give you endless happiness. Eid Mubarak Namma, stay blessed and keep smiling always.
+          </p>
+        </div>
+        <button onclick="nextStep(); launchConfetti(140)" class="mt-8 bg-white text-emerald-900 px-9 py-4 rounded-full font-extrabold shadow-xl hover:scale-105 transition">Final Surprise 🌟</button>
+      </section>
+
+      <section class="step w-full">
+        <p class="uppercase tracking-[.38em] text-sm text-yellow-100 mb-4">From My Heart</p>
+        <h2 class="font-arabic eid-title text-6xl sm:text-8xl mb-6">Happy Eid Namma</h2>
+        <p class="text-xl max-w-2xl mx-auto text-white/95 leading-9"><span class="typewriter">Eid Mubarak, DUA HYDER ❤️</span></p>
+        <p class="text-lg max-w-3xl mx-auto mt-6 text-white/90 leading-8">May this Eid bring love, peace, beautiful memories, delicious food, family laughter, and countless blessings into your life.</p>
+        <button onclick="restartPage()" class="mt-8 bg-yellow-300 text-emerald-950 px-9 py-4 rounded-full font-extrabold shadow-xl hover:scale-105 transition">Replay Eid Magic 🐐</button>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    let current = 0;
+    let joy = 0;
+    const steps = document.querySelectorAll('.step');
+    const progress = document.getElementById('progress');
+
+    steps.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'progress-dot' + (i === 0 ? ' active' : '');
+      progress.appendChild(d);
+    });
+
+    function updateProgress() {
+      document.querySelectorAll('.progress-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function showStep(i) {
+      steps.forEach(s => s.classList.remove('active'));
+      steps[i].classList.add('active');
+      current = i;
+      updateProgress();
+    }
+    function nextStep() { showStep(current + 1); }
+
+    function selectAnimal(name) {
+      const text = document.getElementById('animalText');
+      text.innerHTML = `You selected <span class="text-yellow-200">${name}</span>. May Allah accept the sacrifice and reward it with blessings. Ameen.`;
+      text.classList.remove('hidden');
+      launchConfetti(60);
+      setTimeout(() => nextStep(), 1700);
+    }
+
+    function feedPlate() {
+      joy++;
+      document.getElementById('joyScore').textContent = joy;
+      const emojis = ['🍽️','🥩','🍖','🍲','🍛','🎉'];
+      document.getElementById('plateEmoji').textContent = emojis[Math.min(joy, emojis.length - 1)];
+      launchConfetti(20);
+      if (joy >= 5) setTimeout(() => nextStep(), 600);
+    }
+
+    function createStars() {
+      for (let i = 0; i < 50; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        s.style.left = Math.random() * 100 + 'vw';
+        s.style.top = Math.random() * 85 + 'vh';
+        s.style.animationDelay = Math.random() * 3 + 's';
+        document.body.appendChild(s);
+      }
+      for (let i = 0; i < 22; i++) {
+        const sp = document.createElement('div');
+        sp.className = 'spark';
+        sp.style.left = Math.random() * 100 + 'vw';
+        sp.style.animationDelay = Math.random() * 6 + 's';
+        sp.style.animationDuration = (4 + Math.random() * 4) + 's';
+        document.body.appendChild(sp);
+      }
+    }
+
+    function launchConfetti(amount = 100) {
+      const colors = ['#ffd166', '#06d6a0', '#ffffff', '#118ab2', '#f77f00'];
+      for (let i = 0; i < amount; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.background = colors[Math.floor(Math.random() * colors.length)];
+        c.style.animationDelay = Math.random() * 1.1 + 's';
+        c.style.animationDuration = (2 + Math.random() * 2.5) + 's';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4500);
+      }
+    }
+
+    function restartPage() {
+      joy = 0;
+      document.getElementById('joyScore').textContent = '0';
+      document.getElementById('plateEmoji').textContent = '🍽️';
+      document.getElementById('animalText').classList.add('hidden');
+      showStep(0);
+    }
+
+    createStars();
+  </script>
+</body>
+</html>
